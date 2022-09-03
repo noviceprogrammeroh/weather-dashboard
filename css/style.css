@@ -1,0 +1,95 @@
+.container {
+    margin-top: 30px;
+}
+
+.nav {
+
+    margin-bottom: 20px;
+}
+
+p {
+    color: white;
+}
+
+#h1-nav-id {
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    justify-content: center;
+    font-size: 40px;
+    color: rgb(0, 94, 255)
+}
+
+#display-jumbotron-h1 {
+    margin-top: -25px;
+    font-size: 40px;
+
+}
+
+#city-btn {
+    width: 100%;
+}
+
+#h2-id {
+
+    float: left;
+}
+
+#weather-date-1,
+#weather-date-2,
+#weather-date-3,
+#weather-date-4,
+#weather-date-5 {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+
+}
+
+li {
+
+    list-style: none;
+    margin-top: 5px;
+}
+
+
+
+
+
+/* .card {
+    width: 165px;
+    font-size: 14px;
+} */
+
+.jumbotron {
+    height: 350px;
+}
+
+.text-primary {
+    font-size: 28px;
+}
+
+.jumbotron-div-id {
+
+    width: 700px;
+
+
+}
+
+h3 {
+    font-size: 15px;
+}
+
+h4 {
+    font-size: 15px;
+}
+
+/* <h3>Temp: ${getTemp}</h3>
+<img src="https://openweathermap.org/img/wn/${
+  getData[i].weather[0].icon
+}@2x.png" />
+<h4>windspeed${getData[i].wind.speed}</h4>
+<h4>humidity${getData[i].main.humidity}</h4>
+<h4>${getData[i].weather[0].description}</h4>
+</div>`; */
