@@ -18,12 +18,7 @@ function initPage() {
   var card = document.querySelector(".card");
   var fiveDayForecastEl = document.querySelector("#five-day-forecast");
   var getGroupDiv = document.querySelector(".list-group");
-  var listSearchBtn = document.createElement("button");
-  listSearchBtn.setAttribute(
-    "class",
-    "list-group-item list-group-item-action active"
-  );
-  listSearchBtn.setAttribute("id", "btn-id");
+ 
 
   var APIKey = "2a14eee60fac2d1c078e7179d1e934f3";
 
@@ -156,8 +151,25 @@ function initPage() {
 
   function renderCities() {
     var getLocalCities = JSON.parse(localStorage.getItem("cities"));
-    listSearchBtn.textContent = getLocalCities;
-    getGroupDiv.appendChild(listSearchBtn);
+    console.log(getLocalCities);
+    getGroupDiv.textContent = "";
+    if(Array.isArray(getLocalCities)){
+
+
+
+      for(var i =0; i < getLocalCities.length; i++) {
+        var getLocalCityName = getLocalCities[i];
+        var listSearchBtn = document.createElement("button");
+        listSearchBtn.setAttribute(
+          "class",
+          "list-group-item list-group-item-action active"
+        );
+        listSearchBtn.setAttribute("id", "btn-id");
+        listSearchBtn.textContent = getLocalCityName;
+        getGroupDiv.appendChild(listSearchBtn);
+        
+      }
+
 
     //this option will display the city current weather when is clicked.
     listSearchBtn.addEventListener("click", function (event) {
@@ -165,20 +177,30 @@ function initPage() {
       // jumbotronDivChildEl = "";
       displayInfoWeather();
     });
-  }
 
-
-  //this function will create a search history button dynamically 
-  function lsList(city) {
-    console.log(city);
-    const arrCities = [];
-    arrCities.push(city);
-    for (var i = 0; i < arrCities.length; i++) {
-      arrCities[i];
-      console.log(arrCities);
-      localStorage.setItem("cities", JSON.stringify(arrCities));
     }
+
+   
   }
+
+
+
+
+
+  function lsList(city) {
+    var getLocalCities = JSON.parse(localStorage.getItem("cities"));
+    console.log(city);
+    // const arrCities = [];
+    // arrCities.push(city);
+    if(getLocalCities == null) {
+      getLocalCities = [];
+    }
+    //validation check if city is already in there... includes method 
+    getLocalCities.push(city);
+
+      localStorage.setItem("cities", JSON.stringify(getLocalCities));
+      renderCities();
+    }
 
 }
 initPage();
