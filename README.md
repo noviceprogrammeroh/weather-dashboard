@@ -17,9 +17,9 @@ This a weather dashboard API application that can access weather information
 
 ## Sreenshots of the web page ##
 
-![This is an image](./Assets/maincalendarshot.PNG)
-![This is an image](./Assets/localstoragecalendarshot.PNG)
-![This is an image](./Assets/localstorage2calendarshot.PNG)
+![This is an image](./images/mainscreenshot.jpg)
+![This is an image](./images/secondscreeenshot.jpg)
+
 
 
 ## Links ##
