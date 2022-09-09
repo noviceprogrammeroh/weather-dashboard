@@ -88,6 +88,11 @@ h4 {
     font-size: 15px;
 }
 
+#btn-id {
+    margin-top: 5px;
+
+}
+
 /* <h3>Temp: ${getTemp}</h3>
 <img src="https://openweathermap.org/img/wn/${
   getData[i].weather[0].icon

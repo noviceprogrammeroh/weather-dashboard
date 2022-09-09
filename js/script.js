@@ -26,13 +26,14 @@ function initPage() {
   renderCities();
 
   function displayInfoWeather() {
-    var city = searchInputEl.value;
+    var city = searchInputEl.value.toLowerCase();
 
     //validation
     if (!city) {
       alert("Please enter a city!");
     }
-
+    
+  
     var queryURL =
       "http://api.openweathermap.org/data/2.5/weather?q=" +
       city +
@@ -152,9 +153,9 @@ function initPage() {
   function renderCities() {
     var getLocalCities = JSON.parse(localStorage.getItem("cities"));
     console.log(getLocalCities);
-    getGroupDiv.textContent = "";
-    if(Array.isArray(getLocalCities)){
 
+    if(Array.isArray(getLocalCities)){
+      getGroupDiv.textContent = "";
 
 
       for(var i =0; i < getLocalCities.length; i++) {
@@ -167,9 +168,10 @@ function initPage() {
         listSearchBtn.setAttribute("id", "btn-id");
         listSearchBtn.textContent = getLocalCityName;
         getGroupDiv.appendChild(listSearchBtn);
+
         
       }
-
+    
 
     //this option will display the city current weather when is clicked.
     listSearchBtn.addEventListener("click", function (event) {
@@ -183,10 +185,6 @@ function initPage() {
    
   }
 
-
-
-
-
   function lsList(city) {
     var getLocalCities = JSON.parse(localStorage.getItem("cities"));
     console.log(city);
@@ -195,12 +193,22 @@ function initPage() {
     if(getLocalCities == null) {
       getLocalCities = [];
     }
-    //validation check if city is already in there... includes method 
-    getLocalCities.push(city);
+    //validation check if the last city is already there, do not include it on the list.
+    var index = getLocalCities.indexOf(city);
+    console.log(index);
+    if (index > -1) {
+      getLocalCities.splice(index, 1);
+    }
 
+    if(index) {
+      getLocalCities.splice(index,0)
+    }
+  
+  
+ 
+       getLocalCities.push(city);
       localStorage.setItem("cities", JSON.stringify(getLocalCities));
       renderCities();
     }
-
 }
 initPage();
