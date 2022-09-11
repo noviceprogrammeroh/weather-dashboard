@@ -8,6 +8,7 @@ function initPage() {
   var weatherInfoEl = document.querySelector("#weather-info");
   var fiveDayForecastEl = document.querySelector("#five-day-forecast");
   var getGroupDiv = document.querySelector(".list-group");
+  // var buttonResetEl = document.querySelector('.reset');
 
 
   // var APIKey = "2a14eee60fac2d1c078e7179d1e934f3";
@@ -29,7 +30,7 @@ function initPage() {
     if (!city) {
       alert("Please enter a city!");
     }
-
+    
     var queryURL =
       "http://api.openweathermap.org/data/2.5/weather?q=" +
       city +
@@ -132,6 +133,10 @@ function initPage() {
       .finally(console.log("API call finished"));
 
     lsList(city);
+    
+
+
+   
   }
 
   //function to convert temp
@@ -198,22 +203,18 @@ function initPage() {
         console.log("This is the  get value from seach button: ", getValFromSearchButton);
         
         listSearchBtn.addEventListener('click', function(event){
-
          var element= event.target;
          var getelementValue = element.getAttribute('value');
          console.log(getelementValue);
          searchInputEl.text="";    
          displayInfoWeather(getelementValue);   
+         });  
 
-
-         })  
+         }
 
        }
-      //  displayInfoWeather(getValFromSearchButton);
 
      }
-
-  }
 
 
 

@@ -13,6 +13,9 @@ This a weather dashboard API application that can access weather information
 - Created html elements dynamically 
 - Created button eventlisteners
 - Created Display functions for buttons
+- Created a funtion that will let user click on a specific city button and display it on the page
+- Created an alert if the city is not entered
+
 
 
 ## Sreenshots of the web page ##
@@ -20,6 +23,7 @@ This a weather dashboard API application that can access weather information
 ![This is an image](./images/mainscreenshot.jpg)
 ![This is an image](./images/secondscreeenshot.jpg)
 ![This is an image](./images/screenshotshowall.jpg)
+
 
 
 
