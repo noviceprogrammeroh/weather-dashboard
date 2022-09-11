@@ -19,6 +19,7 @@ This a weather dashboard API application that can access weather information
 
 ![This is an image](./images/mainscreenshot.jpg)
 ![This is an image](./images/secondscreeenshot.jpg)
+![This is an image](./images/screenshotshowall.jpg)
 
 
 

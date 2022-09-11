@@ -9,13 +9,11 @@ function initPage() {
   var fiveDayForecastEl = document.querySelector("#five-day-forecast");
   var getGroupDiv = document.querySelector(".list-group");
 
-  var APIKey = "2a14eee60fac2d1c078e7179d1e934f3";
 
+  // var APIKey = "2a14eee60fac2d1c078e7179d1e934f3";
+   var APIKey = "b3dd20f120ee6fd6de286935865b65c1";
 
-
-
-
-    //add event listener to the search button
+  //add event listener to the search button
     searchButtonEl.addEventListener("click", function (event) {
     event.preventDefault();
     var city = searchInputEl.value.toLowerCase();
@@ -198,25 +196,24 @@ function initPage() {
         getGroupDiv.appendChild(listSearchBtn);
         var getValFromSearchButton = listSearchBtn.value;
         console.log("This is the  get value from seach button: ", getValFromSearchButton);
+        
+        listSearchBtn.addEventListener('click', function(event){
 
-        // listSearchBtn.addEventListener("click", function() {
-        //   console.log("clicked")
-  
-        //   displayInfoWeather(getValFromSearchButton);
+         var element= event.target;
+         var getelementValue = element.getAttribute('value');
+         console.log(getelementValue);
+         searchInputEl.text="";    
+         displayInfoWeather(getelementValue);   
 
-  
-  
-        //     });
+
+         })  
 
        }
-        
-
-
+      //  displayInfoWeather(getValFromSearchButton);
 
      }
 
   }
-
 
 
 
