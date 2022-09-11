@@ -3,37 +3,35 @@ function initPage() {
   //html element variables
   var searchInputEl = document.querySelector("#search-input");
   var searchButtonEl = document.querySelector(".btn-block");
-  var displayJumbotronH1El = document.querySelector("#display-jumbotron-h1");
-  var cardGroupEl1 = document.querySelector("#card-id-1");
-  var cardGroupEl2 = document.querySelector("#card-id-2");
-  var cardGroupEl3 = document.querySelector("#card-id-3");
-  var cardGroupEl4 = document.querySelector("#card-id-4");
-  var jumbotronDivEl = document.querySelector("#jumbotron-div-id");
   var jumbotronDivChildEl = document.querySelector(".jumbotron");
-  var cardsEl = document.querySelector("#card-title");
-  var cardTextEl = document.querySelector("#card-text");
   var jumbotronH1El = document.querySelector("#display-jumbotron-h1");
-  var historyDiv = document.querySelector("#history-div");
   var weatherInfoEl = document.querySelector("#weather-info");
-  var card = document.querySelector(".card");
   var fiveDayForecastEl = document.querySelector("#five-day-forecast");
   var getGroupDiv = document.querySelector(".list-group");
- 
 
   var APIKey = "2a14eee60fac2d1c078e7179d1e934f3";
 
 
-  renderCities();
 
-  function displayInfoWeather() {
+
+
+    //add event listener to the search button
+    searchButtonEl.addEventListener("click", function (event) {
+    event.preventDefault();
     var city = searchInputEl.value.toLowerCase();
+    displayInfoWeather(city);
+    renderCities();
+    });
 
+
+  function displayInfoWeather(city) {
+    // var city = searchInputEl.value.toLowerCase();
+    console.log(city);
     //validation
     if (!city) {
       alert("Please enter a city!");
     }
-    
-  
+
     var queryURL =
       "http://api.openweathermap.org/data/2.5/weather?q=" +
       city +
@@ -63,7 +61,7 @@ function initPage() {
         var wind = data.wind.speed;
         var temp = data.main.temp;
         jumbotronH1El.innerHTML =
-        currentCity + " " + month + "/" + day + "/" + year + " ";
+          currentCity + " " + month + "/" + day + "/" + year + " ";
         var ulEl = document.createElement("ul");
         var liHumidity = document.createElement("li");
         var liWind = document.createElement("li");
@@ -129,8 +127,7 @@ function initPage() {
                   <h4>${getData[i].weather[0].description}</h4>
                   </div>`;
             }
-              fiveDayForecastEl.innerHTML = htmlStr;
-        
+            fiveDayForecastEl.innerHTML = htmlStr;
           });
       })
       .catch((e) => console.error(e))
@@ -144,53 +141,20 @@ function initPage() {
     return Math.floor((temp - 273.15) * 1.8 + 32);
   }
 
-  //add event listener to the search button
-  searchButtonEl.addEventListener("click", function (event) {
-    event.preventDefault();
-    displayInfoWeather();
-  });
-
-  function renderCities() {
-    var getLocalCities = JSON.parse(localStorage.getItem("cities"));
-    console.log(getLocalCities);
-
-    if(Array.isArray(getLocalCities)){
-      getGroupDiv.textContent = "";
+  // //add event listener to the search button
+  // searchButtonEl.addEventListener("click", function (event) {
 
 
-      for(var i =0; i < getLocalCities.length; i++) {
-        var getLocalCityName = getLocalCities[i];
-        var listSearchBtn = document.createElement("button");
-        listSearchBtn.setAttribute(
-          "class",
-          "list-group-item list-group-item-action active"
-        );
-        listSearchBtn.setAttribute("id", "btn-id");
-        listSearchBtn.textContent = getLocalCityName;
-        getGroupDiv.appendChild(listSearchBtn);
-
-        
-      }
-    
-
-    //this option will display the city current weather when is clicked.
-    listSearchBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-      // jumbotronDivChildEl = "";
-      displayInfoWeather();
-    });
-
-    }
-
-   
-  }
+  //   event.preventDefault();
+  //   displayInfoWeather();
+  // });
 
   function lsList(city) {
     var getLocalCities = JSON.parse(localStorage.getItem("cities"));
     console.log(city);
     // const arrCities = [];
     // arrCities.push(city);
-    if(getLocalCities == null) {
+    if (getLocalCities == null) {
       getLocalCities = [];
     }
     //validation check if the last city is already there, do not include it on the list.
@@ -200,15 +164,61 @@ function initPage() {
       getLocalCities.splice(index, 1);
     }
 
-    if(index) {
-      getLocalCities.splice(index,0)
+    if (index) {
+      getLocalCities.splice(index, 0);
     }
+
+    getLocalCities.push(city);
+    console.log(getLocalCities);
+    localStorage.setItem("cities", JSON.stringify(getLocalCities));
+    renderCities();
+  }
+
+  function renderCities() {
+
+    var getLocalCities = JSON.parse(localStorage.getItem("cities"));
+    console.log("This is the getlocalCities : ", getLocalCities);
+
+    
+    if (Array.isArray(getLocalCities)) {
+      getGroupDiv.textContent = "";
+
+      for (var i = 0; i < getLocalCities.length; i++) {
+        // var getNameCity = getLocalCities[i];   
+        var getNameCity = getLocalCities[i];               
+        
+        var listSearchBtn = document.createElement("button");
+        listSearchBtn.setAttribute(
+          "class",
+          "list-group-item list-group-item-action active"
+        );
+        listSearchBtn.setAttribute("id", "btn-id");
+        listSearchBtn.setAttribute("value", getNameCity);
+        listSearchBtn.textContent = getNameCity;
+        getGroupDiv.appendChild(listSearchBtn);
+        var getValFromSearchButton = listSearchBtn.value;
+        console.log("This is the  get value from seach button: ", getValFromSearchButton);
+
+        // listSearchBtn.addEventListener("click", function() {
+        //   console.log("clicked")
+  
+        //   displayInfoWeather(getValFromSearchButton);
+
   
   
- 
-       getLocalCities.push(city);
-      localStorage.setItem("cities", JSON.stringify(getLocalCities));
-      renderCities();
-    }
+        //     });
+
+       }
+        
+
+
+
+     }
+
+  }
+
+
+
+
 }
 initPage();
